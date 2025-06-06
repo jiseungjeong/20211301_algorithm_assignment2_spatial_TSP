@@ -1,0 +1,17 @@
+NAME: small10
+TYPE: TSP
+COMMENT: Small 10-node test instance for Held-Karp algorithm
+DIMENSION: 10
+EDGE_WEIGHT_TYPE: EUC_2D
+NODE_COORD_SECTION
+1 0.0 0.0
+2 10.0 0.0
+3 20.0 0.0
+4 30.0 0.0
+5 40.0 0.0
+6 0.0 10.0
+7 10.0 10.0
+8 20.0 10.0
+9 30.0 10.0
+10 40.0 10.0
+EOF 

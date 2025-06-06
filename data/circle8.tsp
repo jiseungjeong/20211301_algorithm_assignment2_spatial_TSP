@@ -1,0 +1,15 @@
+NAME: circle8
+TYPE: TSP
+COMMENT: 8 nodes arranged in a circle - simple test case
+DIMENSION: 8
+EDGE_WEIGHT_TYPE: EUC_2D
+NODE_COORD_SECTION
+1 20.0 0.0
+2 14.14 14.14
+3 0.0 20.0
+4 -14.14 14.14
+5 -20.0 0.0
+6 -14.14 -14.14
+7 0.0 -20.0
+8 14.14 -14.14
+EOF 
