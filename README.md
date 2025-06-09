@@ -136,13 +136,6 @@ EOF
 make clean          # Remove build files
 ```
 
-## 💡 Algorithm Selection Guide
-
-- **Small problems (≤15 nodes)**: Use **Held-Karp** for optimal solution
-- **Medium problems (≤500 nodes)**: Use **MST 2-Approximation** for guaranteed quality
-- **Large problems (1000+ nodes)**: Use **Spatial Algorithm** for speed
-- **Quick baseline**: Use **Greedy** for fast initial solution
-
 ## 📊 Experimental Results
 
 ### Performance Comparison on Standard Datasets
