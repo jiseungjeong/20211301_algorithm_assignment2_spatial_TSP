@@ -160,7 +160,3 @@ make clean          # Remove build files
 - **Greedy TSP**: Fast for small instances but quality degrades significantly on larger problems
 
 *OOM = Out of Memory. Bold values indicate best performing algorithm for each dataset.*
-
----
-
-**Purpose**: Educational comparison of TSP solution approaches 
