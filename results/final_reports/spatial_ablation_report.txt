@@ -1,0 +1,188 @@
+================================================================================
+Spatial Algorithm Ablation Study Report
+================================================================================
+
+📊 Overall Statistics:
+   • Datasets analyzed: 8
+   • Average speedup (KD-tree): 231.36x
+   • Maximum speedup: 1707.57x
+   • Average 2-opt improvement: 0.85%
+   • Maximum 2-opt improvement: 3.01%
+   • Average quality difference: 1.831%
+
+🌳 Phase 1 Analysis: KD-tree vs Brute-force KNN
+--------------------------------------------------
+• circle8 (8 nodes):
+   - KD-tree time: 0.01 ms
+   - Brute-force time: 0.01 ms
+   - Speedup: 0.82x
+   - Candidate edges: 28 (KD) vs 28 (BF)
+
+• burma14 (14 nodes):
+   - KD-tree time: 0.02 ms
+   - Brute-force time: 0.02 ms
+   - Speedup: 0.71x
+   - Candidate edges: 70 (KD) vs 70 (BF)
+
+• bayg29 (29 nodes):
+   - KD-tree time: 0.06 ms
+   - Brute-force time: 0.05 ms
+   - Speedup: 0.88x
+   - Candidate edges: 145 (KD) vs 145 (BF)
+
+• att48 (48 nodes):
+   - KD-tree time: 0.10 ms
+   - Brute-force time: 0.24 ms
+   - Speedup: 2.35x
+   - Candidate edges: 240 (KD) vs 240 (BF)
+
+• a280 (280 nodes):
+   - KD-tree time: 1.68 ms
+   - Brute-force time: 3.57 ms
+   - Speedup: 2.13x
+   - Candidate edges: 3920 (KD) vs 3920 (BF)
+
+• xql662 (662 nodes):
+   - KD-tree time: 3.11 ms
+   - Brute-force time: 21.44 ms
+   - Speedup: 6.89x
+   - Candidate edges: 9930 (KD) vs 9930 (BF)
+
+• kz9976 (9976 nodes):
+   - KD-tree time: 59.53 ms
+   - Brute-force time: 7709.04 ms
+   - Speedup: 129.50x
+   - Candidate edges: 149640 (KD) vs 149640 (BF)
+
+• mona-lisa100K (100000 nodes):
+   - KD-tree time: 623.31 ms
+   - Brute-force time: 1064350.00 ms
+   - Speedup: 1707.57x
+   - Candidate edges: 1500000 (KD) vs 1500000 (BF)
+
+⚡ Phase 4 Analysis: 2-opt Optimization
+----------------------------------------
+• circle8:
+   - Distance before 2-opt: 122.4
+   - Distance after 2-opt: 122.4
+   - Improvement: 0.00%
+   - 2-opt time: 0.00 ms
+
+• burma14:
+   - Distance before 2-opt: 37.2
+   - Distance after 2-opt: 37.2
+   - Improvement: 0.00%
+   - 2-opt time: 0.00 ms
+
+• bayg29:
+   - Distance before 2-opt: 10211.2
+   - Distance after 2-opt: 10007.0
+   - Improvement: 2.00%
+   - 2-opt time: 0.00 ms
+
+• att48:
+   - Distance before 2-opt: 40526.4
+   - Distance after 2-opt: 39308.4
+   - Improvement: 3.01%
+   - 2-opt time: 0.01 ms
+
+• a280:
+   - Distance before 2-opt: 3484.6
+   - Distance after 2-opt: 3454.0
+   - Improvement: 0.88%
+   - 2-opt time: 0.04 ms
+
+• xql662:
+   - Distance before 2-opt: 3306.9
+   - Distance after 2-opt: 3277.6
+   - Improvement: 0.89%
+   - 2-opt time: 0.12 ms
+
+• kz9976:
+   - Distance before 2-opt: 1355530.0
+   - Distance after 2-opt: 1354890.0
+   - Improvement: 0.05%
+   - 2-opt time: 1.81 ms
+
+• mona-lisa100K:
+   - Distance before 2-opt: 6867830.0
+   - Distance after 2-opt: 6867530.0
+   - Improvement: 0.00%
+   - 2-opt time: 24.89 ms
+
+🏁 Overall Performance Comparison
+-----------------------------------
+• circle8:
+   - Total time KD-tree: 0.07 ms
+   - Total time Brute-force: 0.14 ms
+   - Overall speedup: 1.92x
+   - Final distance KD: 122.4
+   - Final distance BF: 122.4
+   - Quality difference: 0.000%
+
+• burma14:
+   - Total time KD-tree: 0.07 ms
+   - Total time Brute-force: 0.01 ms
+   - Overall speedup: 0.15x
+   - Final distance KD: 37.2
+   - Final distance BF: 37.2
+   - Quality difference: 0.000%
+
+• bayg29:
+   - Total time KD-tree: 0.16 ms
+   - Total time Brute-force: 0.02 ms
+   - Overall speedup: 0.14x
+   - Final distance KD: 10007.0
+   - Final distance BF: 10007.0
+   - Quality difference: 0.000%
+
+• att48:
+   - Total time KD-tree: 0.41 ms
+   - Total time Brute-force: 0.04 ms
+   - Overall speedup: 0.09x
+   - Final distance KD: 39308.4
+   - Final distance BF: 39308.4
+   - Quality difference: 0.000%
+
+• a280:
+   - Total time KD-tree: 5.70 ms
+   - Total time Brute-force: 0.36 ms
+   - Overall speedup: 0.06x
+   - Final distance KD: 3454.0
+   - Final distance BF: 3130.3
+   - Quality difference: 10.340%
+
+• xql662:
+   - Total time KD-tree: 25.70 ms
+   - Total time Brute-force: 0.98 ms
+   - Overall speedup: 0.04x
+   - Final distance KD: 3277.6
+   - Final distance BF: 3178.5
+   - Quality difference: 3.117%
+
+• kz9976:
+   - Total time KD-tree: 7804.95 ms
+   - Total time Brute-force: 33.45 ms
+   - Overall speedup: 0.00x
+   - Final distance KD: 1354890.0
+   - Final distance BF: 1341340.0
+   - Quality difference: 1.011%
+
+• mona-lisa100K:
+   - Total time KD-tree: 1068730.00 ms
+   - Total time Brute-force: 3650.66 ms
+   - Overall speedup: 0.00x
+   - Final distance KD: 6867530.0
+   - Final distance BF: 6880140.0
+   - Quality difference: 0.184%
+
+🎯 Key Findings:
+--------------------
+• KD-tree shows excellent scalability with significant speedup
+• 2-opt optimization provides minimal but consistent improvement
+• Notable differences in solution quality between approaches
+• KD-tree shows improved scalability for larger datasets
+
+================================================================================
+Ablation Study Complete
+================================================================================

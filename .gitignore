@@ -1,0 +1,34 @@
+# Build files
+build/
+*.o
+*.exe
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# # Results and outputs (keep structure but ignore content)
+# results/algorithm_outputs/*/*
+# results/archive/
+# results/ablation_data/output_files/
+
+# # Large data files
+# *.png
+# *.jpg
+# *.jpeg
+
+# Backup files
+*_backup*
+*.bak
+
+# Logs
+*.log

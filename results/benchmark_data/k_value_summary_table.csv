@@ -1,0 +1,5 @@
+Dataset,Nodes,Best_K_Distance,Best_Distance,Fastest_K,Fastest_Time_ms,K20_Baseline_Distance,K20_Baseline_Time_ms,Distance_Improvement_Percent,Time_Improvement_Percent
+small15,15,12,160,40,5.0,172,7.0,7.0%,28.0%
+small20,20,5,220,10,5.0,231,5.2,4.8%,4.6%
+small30,30,5,483,30,5.2,483,5.8,0.0%,10.5%
+medium50,50,5,550,25,4.6,550,5.2,0.0%,12.3%

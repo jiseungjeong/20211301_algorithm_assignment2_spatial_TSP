@@ -1,0 +1,22 @@
+⏱️  Measuring large dataset execution time (no timeout)...
+⏱️  Measuring execution time on large dataset (no timeout)
+📊 Dataset: mona-lisa100K.tsp
+============================================================
+
+🚀 Running MST-2-Approximation...
+   (This may take several minutes...)
+✅ SUCCESS!
+   Execution time: 1459.33 seconds (24.32 minutes)
+   Tour distance: 8405011
+
+🚀 Running Greedy-TSP...
+   (This may take several minutes...)
+✅ SUCCESS!
+   Execution time: 593.62 seconds (9.89 minutes)
+   Tour distance: 6846598
+
+============================================================
+📊 SUMMARY:
+  MST-2-Approximation : 1459.33s, Distance: 8405011
+  Greedy-TSP          : 593.62s, Distance: 6846598
+============================================================

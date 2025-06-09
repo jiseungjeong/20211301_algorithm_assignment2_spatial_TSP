@@ -29,7 +29,9 @@ public:
 
 // TSP 파일 파싱 함수들
 CompleteGraph parseTSP(const string& filename);
+CompleteGraph parseTSPExplicit(const string& filename);
 vector<pair<double,double> > parseCoordinates(const string& filename);
+vector<pair<double,double> > parseDisplayCoordinates(const string& filename);
 
 // 결과 저장 함수들
 void saveTourToFile(const vector<int>& tour, const vector<pair<double,double> >& coordinates, 

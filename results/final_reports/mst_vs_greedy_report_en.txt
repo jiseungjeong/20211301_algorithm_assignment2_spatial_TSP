@@ -1,0 +1,105 @@
+============================================================
+MST vs Greedy Performance Analysis Report
+============================================================
+
+📊 Overall Statistics:
+   • Datasets analyzed: 12
+   • Greedy wins: 10 (83.3%)
+   • MST wins: 2 (16.7%)
+   • Average improvement: 11.59%
+   • Maximum improvement: 28.74%
+
+📋 Detailed Results by Dataset:
+--------------------------------------------------
+• circle8 (8 nodes):
+   - Greedy: 122.4
+   - MST: 171.8
+   - Winner: Greedy (improvement: 28.74%)
+   - Final distance: 122.4
+
+• circle8 (8 nodes):
+   - Greedy: 122.4
+   - MST: 171.8
+   - Winner: Greedy (improvement: 28.74%)
+   - Final distance: 122.4
+
+• burma14 (14 nodes):
+   - Greedy: 38.7
+   - MST: 37.2
+   - Winner: MST (improvement: 3.74%)
+   - Final distance: 37.2
+
+• burma14 (14 nodes):
+   - Greedy: 38.7
+   - MST: 37.2
+   - Winner: MST (improvement: 3.74%)
+   - Final distance: 37.2
+
+• bayg29 (29 nodes):
+   - Greedy: 10211.2
+   - MST: 12299.7
+   - Winner: Greedy (improvement: 16.98%)
+   - Final distance: 10007.0
+
+• bayg29 (29 nodes):
+   - Greedy: 10211.2
+   - MST: 12299.7
+   - Winner: Greedy (improvement: 16.98%)
+   - Final distance: 10007.0
+
+• att48 (48 nodes):
+   - Greedy: 40526.4
+   - MST: 43955.8
+   - Winner: Greedy (improvement: 7.80%)
+   - Final distance: 39308.4
+
+• att48 (48 nodes):
+   - Greedy: 40526.4
+   - MST: 43955.8
+   - Winner: Greedy (improvement: 7.80%)
+   - Final distance: 39308.4
+
+• a280 (280 nodes):
+   - Greedy: 3484.6
+   - MST: 3738.1
+   - Winner: Greedy (improvement: 6.78%)
+   - Final distance: 3454.0
+
+• a280 (280 nodes):
+   - Greedy: 3484.6
+   - MST: 3738.1
+   - Winner: Greedy (improvement: 6.78%)
+   - Final distance: 3454.0
+
+• xql662 (662 nodes):
+   - Greedy: 3306.9
+   - MST: 3498.7
+   - Winner: Greedy (improvement: 5.48%)
+   - Final distance: 3277.6
+
+• xql662 (662 nodes):
+   - Greedy: 3306.9
+   - MST: 3498.7
+   - Winner: Greedy (improvement: 5.48%)
+   - Final distance: 3277.6
+
+🔍 Pattern Analysis:
+------------------------------
+• Small scale (≤20 nodes): Greedy win rate 50.0%
+• Medium scale (21-50 nodes): Greedy win rate 100.0%
+• Large scale (>50 nodes): Greedy win rate 100.0%
+
+⏱️ Average Execution Time Analysis:
+   • Phase 2 (Greedy): 0.06 ms
+   • Phase 3 (MST): 0.20 ms
+   • Total average: 1.14 ms
+
+🎯 Key Findings:
+--------------------
+• Greedy algorithm shows superior performance in most cases
+• Moderate performance gap between algorithms
+• MST construction takes significantly more time than Greedy
+
+============================================================
+Analysis Complete
+============================================================

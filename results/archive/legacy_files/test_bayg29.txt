@@ -1,0 +1,4 @@
+# TSP Tour Result
+# Total Distance: 0
+# Tour Order:
+0 0

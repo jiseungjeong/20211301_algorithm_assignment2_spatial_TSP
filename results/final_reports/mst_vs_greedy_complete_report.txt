@@ -1,0 +1,211 @@
+================================================================================
+COMPLETE MST vs Greedy Performance Analysis Report
+================================================================================
+
+📁 Dataset Overview:
+   • Total datasets found: 8
+   • Successfully analyzed: 22
+   • Failed/Timeout: 0
+   • Success rate: 275.0%
+
+📊 Overall Statistics (Successful Analyses):
+   • Datasets analyzed: 22
+   • Greedy wins: 19 (86.4%)
+   • MST wins: 3 (13.6%)
+   • Average improvement: 11.22%
+   • Maximum improvement: 28.74%
+   • Minimum improvement: 3.74%
+
+📋 Detailed Results by Dataset (Successful):
+----------------------------------------------------------------------
+• circle8 (8 nodes):
+   - Greedy: 122.4
+   - MST: 171.8
+   - Winner: Greedy (improvement: 28.74%)
+   - Final distance: 122.4
+   - Total time: 0.02 ms
+
+• circle8 (8 nodes):
+   - Greedy: 122.4
+   - MST: 171.8
+   - Winner: Greedy (improvement: 28.74%)
+   - Final distance: 122.4
+   - Total time: 0.02 ms
+
+• circle8 (8 nodes):
+   - Greedy: 122.4
+   - MST: 171.8
+   - Winner: Greedy (improvement: 28.74%)
+   - Final distance: 122.4
+   - Total time: 0.02 ms
+
+• burma14 (14 nodes):
+   - Greedy: 38.7
+   - MST: 37.2
+   - Winner: MST (improvement: 3.74%)
+   - Final distance: 37.2
+   - Total time: 0.04 ms
+
+• burma14 (14 nodes):
+   - Greedy: 38.7
+   - MST: 37.2
+   - Winner: MST (improvement: 3.74%)
+   - Final distance: 37.2
+   - Total time: 0.04 ms
+
+• burma14 (14 nodes):
+   - Greedy: 38.7
+   - MST: 37.2
+   - Winner: MST (improvement: 3.74%)
+   - Final distance: 37.2
+   - Total time: 0.04 ms
+
+• bayg29 (29 nodes):
+   - Greedy: 10211.2
+   - MST: 12299.7
+   - Winner: Greedy (improvement: 16.98%)
+   - Final distance: 10007.0
+   - Total time: 0.09 ms
+
+• bayg29 (29 nodes):
+   - Greedy: 10211.2
+   - MST: 12299.7
+   - Winner: Greedy (improvement: 16.98%)
+   - Final distance: 10007.0
+   - Total time: 0.17 ms
+
+• bayg29 (29 nodes):
+   - Greedy: 10211.2
+   - MST: 12299.7
+   - Winner: Greedy (improvement: 16.98%)
+   - Final distance: 10007.0
+   - Total time: 0.09 ms
+
+• att48 (48 nodes):
+   - Greedy: 40526.4
+   - MST: 43955.8
+   - Winner: Greedy (improvement: 7.80%)
+   - Final distance: 39308.4
+   - Total time: 0.15 ms
+
+• att48 (48 nodes):
+   - Greedy: 40526.4
+   - MST: 43955.8
+   - Winner: Greedy (improvement: 7.80%)
+   - Final distance: 39308.4
+   - Total time: 0.15 ms
+
+• att48 (48 nodes):
+   - Greedy: 40526.4
+   - MST: 43955.8
+   - Winner: Greedy (improvement: 7.80%)
+   - Final distance: 39308.4
+   - Total time: 0.15 ms
+
+• a280 (280 nodes):
+   - Greedy: 3484.6
+   - MST: 3738.1
+   - Winner: Greedy (improvement: 6.78%)
+   - Final distance: 3454.0
+   - Total time: 1.60 ms
+
+• a280 (280 nodes):
+   - Greedy: 3484.6
+   - MST: 3738.1
+   - Winner: Greedy (improvement: 6.78%)
+   - Final distance: 3454.0
+   - Total time: 1.62 ms
+
+• a280 (280 nodes):
+   - Greedy: 3484.6
+   - MST: 3738.1
+   - Winner: Greedy (improvement: 6.78%)
+   - Final distance: 3454.0
+   - Total time: 1.74 ms
+
+• xql662 (662 nodes):
+   - Greedy: 3306.9
+   - MST: 3498.7
+   - Winner: Greedy (improvement: 5.48%)
+   - Final distance: 3277.6
+   - Total time: 4.17 ms
+
+• xql662 (662 nodes):
+   - Greedy: 3306.9
+   - MST: 3498.7
+   - Winner: Greedy (improvement: 5.48%)
+   - Final distance: 3277.6
+   - Total time: 4.23 ms
+
+• xql662 (662 nodes):
+   - Greedy: 3306.9
+   - MST: 3498.7
+   - Winner: Greedy (improvement: 5.48%)
+   - Final distance: 3277.6
+   - Total time: 4.54 ms
+
+• kz9976 (9976 nodes):
+   - Greedy: 1355530.0
+   - MST: 1452120.0
+   - Winner: Greedy (improvement: 6.65%)
+   - Final distance: 1354890.0
+   - Total time: 93.04 ms
+
+• kz9976 (9976 nodes):
+   - Greedy: 1355530.0
+   - MST: 1452120.0
+   - Winner: Greedy (improvement: 6.65%)
+   - Final distance: 1354890.0
+   - Total time: 93.91 ms
+
+• kz9976 (9976 nodes):
+   - Greedy: 1355530.0
+   - MST: 1452120.0
+   - Winner: Greedy (improvement: 6.65%)
+   - Final distance: 1354890.0
+   - Total time: 96.48 ms
+
+• mona-lisa100K (100000 nodes):
+   - Greedy: 6867830.0
+   - MST: 8396910.0
+   - Winner: Greedy (improvement: 18.21%)
+   - Final distance: 6867530.0
+   - Total time: 4677.10 ms
+
+🔍 Pattern Analysis by Scale:
+----------------------------------------
+• Small (≤50 nodes): 12 datasets
+   - Greedy win rate: 75.0% (9/12)
+   - Average improvement: 14.32%
+   - Node range: 8-48
+
+• Medium (51-1000 nodes): 6 datasets
+   - Greedy win rate: 100.0% (6/6)
+   - Average improvement: 6.13%
+   - Node range: 280-662
+
+• Large (>1000 nodes): 4 datasets
+   - Greedy win rate: 100.0% (4/4)
+   - Average improvement: 9.54%
+   - Node range: 9976-100000
+
+⏱️ Execution Time Analysis:
+------------------------------
+   • Phase 1 (Filtering): 35.66 ms (avg)
+   • Phase 2 (Greedy): 34.31 ms (avg)
+   • Phase 3 (MST): 154.69 ms (avg)
+   • Phase 4 (2-opt): 1.68 ms (avg)
+   • Total average: 226.34 ms
+   • Fastest analysis: 0.02 ms
+   • Slowest analysis: 4677.10 ms
+
+🎯 Key Insights:
+--------------------
+• Greedy algorithm shows dominant performance across all scales
+• Significant performance variations observed (up to 28.7%)
+• Greedy shows excellent scalability for large datasets
+• MST construction significantly more expensive than Greedy
+
+================================================================================
+Complete Analysis Finished
+================================================================================

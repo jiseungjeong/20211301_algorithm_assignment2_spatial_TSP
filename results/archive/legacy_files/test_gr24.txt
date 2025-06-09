@@ -1,0 +1,4 @@
+# TSP Tour Result
+# Total Distance: 1553
+# Tour Order:
+0 15 5 6 7 20 4 23 11 3 22 8 12 13 9 16 21 17 18 1 19 14 2 10 0

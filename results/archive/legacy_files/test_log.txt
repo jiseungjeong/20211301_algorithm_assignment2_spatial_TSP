@@ -1,0 +1,69 @@
+🚀 Starting comprehensive benchmark...
+🚀 Starting TSP Algorithm Benchmark
+============================================================
+
+📊 Testing dataset: circle8.tsp
+----------------------------------------
+  Running Held-Karp            ... ✅ SUCCESS (13.4ms)
+  Running MST-2-Approximation  ... ✅ SUCCESS (11.0ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (11.7ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (9.2ms)
+
+📊 Testing dataset: small10.tsp
+----------------------------------------
+  Running Held-Karp            ... ✅ SUCCESS (4.4ms)
+  Running MST-2-Approximation  ... ✅ SUCCESS (3.3ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (3.0ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (3.1ms)
+
+📊 Testing dataset: small15.tsp
+----------------------------------------
+  Running Held-Karp            ... ✅ SUCCESS (19.3ms)
+  Running MST-2-Approximation  ... ✅ SUCCESS (3.6ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (3.6ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (4.3ms)
+
+📊 Testing dataset: small20.tsp
+----------------------------------------
+  Running Held-Karp            ... ⏭️  SKIPPED (too large for Held-Karp)
+  Running MST-2-Approximation  ... ✅ SUCCESS (3.5ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (3.3ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (2.9ms)
+
+📊 Testing dataset: a280.tsp
+----------------------------------------
+  Running Held-Karp            ... ⏭️  SKIPPED (too large for Held-Karp)
+  Running MST-2-Approximation  ... ✅ SUCCESS (7.6ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (8.2ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (5.0ms)
+
+📊 Testing dataset: xql662.tsp
+----------------------------------------
+  Running Held-Karp            ... ❌ FAILED
+     Error: 
+  Running MST-2-Approximation  ... ✅ SUCCESS (14.0ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (10.2ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (8.4ms)
+
+📊 Testing dataset: kz9976.tsp
+----------------------------------------
+  Running Held-Karp            ... ❌ FAILED
+     Error: 
+  Running MST-2-Approximation  ... ✅ SUCCESS (6410.3ms)
+  Running Spatial-Algorithm    ... ✅ SUCCESS (768.7ms)
+  Running Greedy-TSP           ... ✅ SUCCESS (848.4ms)
+
+📊 Testing dataset: mona-lisa100K.tsp
+----------------------------------------
+  Running Held-Karp            ... ⏭️  SKIPPED (too large for Held-Karp)
+  Running MST-2-Approximation  ... ⏰ TIMEOUT
+  Running Spatial-Algorithm    ... ✅ SUCCESS (191164.2ms)
+  Running Greedy-TSP           ... ⏰ TIMEOUT
+
+============================================================
+🏁 Benchmark Complete!
+   Total tests: 32
+   Successful: 25
+   Failed: 7
+   Results saved to: /Users/wjdwl/Desktop/algorithm_course/assignment2/algorithm_assignment2/results/benchmark_results.csv
+============================================================

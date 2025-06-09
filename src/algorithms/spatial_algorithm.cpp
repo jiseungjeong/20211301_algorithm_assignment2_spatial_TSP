@@ -1,5 +1,7 @@
 #include "../../include/tsp_common.h"
 #include "../../include/heap_utils.h"
+#include "../../include/benchmark_utils.h"
+#include "../../include/spatial_analysis.h"
 #include <algorithm>
 #include <set>
 #include <ctime>
@@ -358,8 +360,8 @@ vector<int> spatialTSP(const CompleteGraph& graph) {
     return bestTour;
 }
 
-// 실제 좌표를 사용하는 버전
-vector<int> spatialTSPWithCoords(const vector<pair<double, double>>& coordinates) {
+// 실제 좌표를 사용하는 버전 (분석 기능 포함)
+vector<int> spatialTSPWithCoordsAnalysis(const vector<pair<double, double>>& coordinates, SpatialStats& stats) {
     int n = coordinates.size();
     
     // 좌표를 Point2D로 변환
@@ -368,42 +370,117 @@ vector<int> spatialTSPWithCoords(const vector<pair<double, double>>& coordinates
         points[i] = Point2D(coordinates[i].first, coordinates[i].second, i);
     }
     
-    cout << "Starting Spatial TSP Algorithm for " << n << " nodes with real coordinates" << endl;
+    cout << "Starting Spatial TSP Algorithm for " << n << " nodes with detailed analysis" << endl;
+    
+    BenchmarkTimer phaseTimer;
     
     // Phase 1: Candidate Edge Filtering
+    phaseTimer.start();
     int k = min(30, max(10, n / 10)); 
     vector<vector<int>> candidates = buildCandidateEdges(points, k);
+    phaseTimer.stop();
+    stats.phase1_time_ms = phaseTimer.getMilliseconds();
     
     // Phase 2: Greedy Insertion  
+    phaseTimer.start();
     vector<int> greedyTour = greedyInsertion(points, candidates);
+    phaseTimer.stop();
+    stats.phase2_time_ms = phaseTimer.getMilliseconds();
     double greedyLength = calculateTourLength(greedyTour, points);
     cout << "Greedy tour length: " << greedyLength << endl;
     
     // Phase 3: MST-Based Correction
+    phaseTimer.start();
     vector<int> mstTour = mstBasedTour(points, candidates);
+    phaseTimer.stop();
+    stats.phase3_time_ms = phaseTimer.getMilliseconds();
     double mstLength = calculateTourLength(mstTour, points);
     cout << "MST tour length: " << mstLength << endl;
     
+    // 통계 기록
+    stats.greedy_distance = greedyLength;
+    stats.mst_distance = mstLength;
+    stats.greedy_only_distance = greedyLength;
+    stats.mst_only_distance = mstLength;
+    
     // 더 나은 투어 선택
     vector<int> bestTour = (greedyLength < mstLength) ? greedyTour : mstTour;
-    cout << "Selected tour length: " << min(greedyLength, mstLength) << endl;
+    double selectedLength = min(greedyLength, mstLength);
+    
+    if (greedyLength < mstLength) {
+        stats.winner = "Greedy";
+        stats.improvement_ratio = (mstLength - greedyLength) / mstLength;
+        cout << "Selected: Greedy (better by " << (mstLength - greedyLength) << ")" << endl;
+    } else {
+        stats.winner = "MST";
+        stats.improvement_ratio = (greedyLength - mstLength) / greedyLength;
+        cout << "Selected: MST (better by " << (greedyLength - mstLength) << ")" << endl;
+    }
     
     // Phase 4: Selective 2-opt Post-Processing
+    phaseTimer.start();
     selective2opt(bestTour, points);
+    phaseTimer.stop();
+    stats.phase4_time_ms = phaseTimer.getMilliseconds();
     double finalLength = calculateTourLength(bestTour, points);
     cout << "Final optimized tour length: " << finalLength << endl;
+    
+    stats.final_distance = finalLength;
+    stats.total_time_ms = stats.phase1_time_ms + stats.phase2_time_ms + 
+                          stats.phase3_time_ms + stats.phase4_time_ms;
+    
+    cout << "\n=== PHASE ANALYSIS ===" << endl;
+    cout << "Phase 1 (Candidate Filtering): " << stats.phase1_time_ms << " ms" << endl;
+    cout << "Phase 2 (Greedy Insertion): " << stats.phase2_time_ms << " ms" << endl;
+    cout << "Phase 3 (MST Construction): " << stats.phase3_time_ms << " ms" << endl;
+    cout << "Phase 4 (2-opt Optimization): " << stats.phase4_time_ms << " ms" << endl;
+    cout << "Total: " << stats.total_time_ms << " ms" << endl;
     
     return bestTour;
 }
 
+// 기존 spatialTSPWithCoords 함수 (호환성 유지)
+vector<int> spatialTSPWithCoords(const vector<pair<double, double>>& coordinates) {
+    SpatialStats dummy_stats;
+    return spatialTSPWithCoordsAnalysis(coordinates, dummy_stats);
+}
+
 int main(int argc, char* argv[]) {
-    (void)argc; // unused parameter warning 해결
+    if (argc < 3) {
+        cout << "Usage: " << argv[0] << " <tsp_file> <output_file> [csv_file] [analysis_csv]" << endl;
+        return 1;
+    }
+    
     string tsp_filename = argv[1];
     string output_filename = argv[2];
+    string csv_filename = (argc > 3) ? argv[3] : "";
+    string analysis_csv = (argc > 4) ? argv[4] : "";
     
     try {
+        // I/O 시간 제외하고 순수 계산 시간만 측정
         vector<pair<double, double>> coordinates = parseCoordinates(tsp_filename);
-        vector<int> tour = spatialTSPWithCoords(coordinates);
+        
+        BenchmarkTimer timer;
+        timer.start();
+        
+        // 분석 모드인지 확인
+        SpatialStats stats;
+        vector<int> tour;
+        
+        if (!analysis_csv.empty()) {
+            // 분석 모드
+            string dataset_name = tsp_filename.substr(tsp_filename.find_last_of("/") + 1);
+            dataset_name = dataset_name.substr(0, dataset_name.find_last_of("."));
+            stats.dataset_name = dataset_name;
+            stats.nodes = coordinates.size();
+            
+            tour = spatialTSPWithCoordsAnalysis(coordinates, stats);
+        } else {
+            // 일반 모드
+            tour = spatialTSPWithCoords(coordinates);
+        }
+        
+        timer.stop();
         
         // 결과 저장을 위해 그래프도 생성
         CompleteGraph graph = parseTSP(tsp_filename);
@@ -414,8 +491,36 @@ int main(int argc, char* argv[]) {
             total_distance += graph.getCost(tour[i], tour[i + 1]);
         }
         
-        cout << "Final tour distance: " << total_distance << endl;
+        cout << "Algorithm: Spatial-Algorithm" << endl;
+        cout << "Dataset: " << tsp_filename << endl;
+        cout << "Nodes: " << coordinates.size() << endl;
+        cout << "Execution time: " << timer.getMilliseconds() << " ms" << endl;
+        cout << "Tour distance: " << total_distance << endl;
+        
+        // 결과 저장
         saveTourToFile(tour, coordinates, output_filename, total_distance);
+        
+        // CSV 저장
+        if (!csv_filename.empty()) {
+            string dataset_name = tsp_filename.substr(tsp_filename.find_last_of("/") + 1);
+            dataset_name = dataset_name.substr(0, dataset_name.find_last_of("."));
+            saveBenchmarkResult(csv_filename, "Spatial-Algorithm", dataset_name, 
+                              coordinates.size(), timer.getMilliseconds(), total_distance);
+        }
+        
+        // 분석 결과 저장
+        if (!analysis_csv.empty()) {
+            // 파일이 존재하지 않으면 헤더 추가
+            ifstream test_file(analysis_csv);
+            bool file_exists = test_file.good();
+            test_file.close();
+            
+            if (!file_exists) {
+                initSpatialStatsCSV(analysis_csv);
+            }
+            
+            saveSpatialStats(analysis_csv, stats);
+        }
         
     } catch (const exception& e) {
         cout << "Error: " << e.what() << endl;

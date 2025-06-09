@@ -1,0 +1,4 @@
+# TSP Tour Result
+# Total Distance: 120
+# Tour Order:
+0 7 6 5 4 3 2 1 0

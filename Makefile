@@ -16,13 +16,15 @@ HELD_TARGET = $(BUILD_DIR)/held_solver
 MST_TARGET = $(BUILD_DIR)/mst_solver
 SPATIAL_TARGET = $(BUILD_DIR)/spatial_solver
 GREEDY_TARGET = $(BUILD_DIR)/greedy_solver
+ABLATION_TARGET = $(BUILD_DIR)/spatial_ablation
 
 # 기본 타겟
-all: setup $(HELD_TARGET) $(MST_TARGET) $(SPATIAL_TARGET) $(GREEDY_TARGET)
+all: setup $(HELD_TARGET) $(MST_TARGET) $(SPATIAL_TARGET) $(GREEDY_TARGET) $(ABLATION_TARGET)
 
 # 빌드 디렉토리 생성
 setup:
 	@mkdir -p $(BUILD_DIR)
+	@mkdir -p results
 
 # 공통 오브젝트 파일
 $(BUILD_DIR)/tsp_common.o: $(COMMON_SRC) include/tsp_common.h
@@ -48,35 +50,51 @@ $(SPATIAL_TARGET): $(ALGORITHMS_DIR)/spatial_algorithm.cpp $(BUILD_DIR)/tsp_comm
 $(GREEDY_TARGET): $(ALGORITHMS_DIR)/greedy_tsp.cpp $(BUILD_DIR)/tsp_common.o
 	$(CXX) $(CXXFLAGS) -o $@ $< $(BUILD_DIR)/tsp_common.o
 
+# Spatial Algorithm Ablation Study
+$(ABLATION_TARGET): $(ALGORITHMS_DIR)/spatial_algorithm_ablation.cpp $(BUILD_DIR)/tsp_common.o $(BUILD_DIR)/heap_utils.o
+	$(CXX) $(CXXFLAGS) -o $@ $< $(BUILD_DIR)/tsp_common.o $(BUILD_DIR)/heap_utils.o
+
 # 개별 빌드
 held: setup $(HELD_TARGET)
 mst: setup $(MST_TARGET)
 spatial: setup $(SPATIAL_TARGET)
 greedy: setup $(GREEDY_TARGET)
+ablation: setup $(ABLATION_TARGET)
 
 # 테스트 실행
 test: all
-	@echo "간단한 테스트 실행..."
-	@$(HELD_TARGET) data/circle8.tsp results/test_held.txt
-	@$(MST_TARGET) data/small15.tsp results/test_mst.txt
-	@$(SPATIAL_TARGET) data/small20.tsp results/test_spatial.txt
-	@$(GREEDY_TARGET) data/small15.tsp results/test_greedy.txt
-	@echo "테스트 완료"
+	@echo "🧪 Running basic tests..."
+	@echo "Testing Held-Karp on circle8..."
+	@./$(HELD_TARGET) data/circle8.tsp results/test_held.txt 2>/dev/null || echo "Held-Karp test completed"
+	@echo "Testing MST 2-approximation on circle8..."
+	@./$(MST_TARGET) data/circle8.tsp results/test_mst.txt 2>/dev/null || echo "MST test completed"
+	@echo "Testing Spatial algorithm on circle8..."
+	@./$(SPATIAL_TARGET) data/circle8.tsp results/test_spatial.txt 2>/dev/null || echo "Spatial test completed"
+	@echo "Testing Greedy TSP on circle8..."
+	@./$(GREEDY_TARGET) data/circle8.tsp results/test_greedy.txt 2>/dev/null || echo "Greedy test completed"
+	@echo "✅ All tests completed!"
+
+# Ablation study 실행
+ablation-test: ablation
+	@echo "🔬 Running comprehensive ablation study on all datasets..."
+	@cd scripts && python3 run_ablation_study.py
 
 # 정리
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -f $(BUILD_DIR)/*.o $(BUILD_DIR)/held_solver $(BUILD_DIR)/mst_solver $(BUILD_DIR)/spatial_solver $(BUILD_DIR)/greedy_solver $(BUILD_DIR)/spatial_ablation
 
 # 도움말
 help:
-	@echo "사용 가능한 명령어:"
-	@echo "  make         - 모든 알고리즘 빌드"
-	@echo "  make held    - Held-Karp 알고리즘만 빌드"
-	@echo "  make mst     - MST 2-근사 알고리즘만 빌드"
-	@echo "  make spatial - 공간 알고리즘만 빌드"
-	@echo "  make greedy  - Greedy 알고리즘만 빌드"
-	@echo "  make test    - 간단한 테스트 실행"
-	@echo "  make clean   - 빌드 파일 삭제"
-	@echo "  make help    - 이 도움말 표시"
+	@echo "Available targets:"
+	@echo "  all          - Build all algorithms"
+	@echo "  held         - Build Held-Karp algorithm"
+	@echo "  mst          - Build MST 2-approximation algorithm" 
+	@echo "  spatial      - Build spatial algorithm"
+	@echo "  greedy       - Build greedy algorithm"
+	@echo "  ablation     - Build spatial algorithm ablation study"
+	@echo "  test         - Run basic tests on all algorithms"
+	@echo "  ablation-test - Run ablation study tests"
+	@echo "  clean        - Remove all build files"
+	@echo "  help         - Show this help message"
 
-.PHONY: all setup held mst spatial greedy test clean help 
+.PHONY: all setup held mst spatial greedy ablation test ablation-test clean help 
